@@ -85,12 +85,10 @@ export default function ProjectsPage() {
             ))}
           </div>
         </div>
-        s
       </section>
 
       {/* CTA Section */}
       <section className="px-4 mt-20">
-        s
         <div className="max-w-4xl mx-auto text-center">
           <div className="glass rounded-3xl p-8 md:p-12">
             <h2 className="text-3xl md:text-4xl font-bold gradient-text mb-6">
