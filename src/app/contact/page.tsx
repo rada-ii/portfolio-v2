@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Phone, MapPin, Linkedin, Github, Send } from "lucide-react";
+import { Mail, MapPin, Github, Linkedin } from "lucide-react";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -10,198 +10,218 @@ export default function ContactPage() {
     subject: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState("");
 
-  const handleChange = (
+  const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement form submission
-    console.log("Form submitted:", formData);
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSubmitMessage("Thank you! Your message has been sent successfully.");
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        setSubmitMessage("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      setSubmitMessage("Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <div className="min-h-screen pt-24 pb-20">
-      {/* Header */}
-      <section className="px-4 mb-16 text-center">
-        <h1 className="text-4xl md:text-6xl font-bold mb-6 gradient-text-purple">
-          Contact
-        </h1>
-        <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-          Ready for new challenges and collaboration. Contact me for projects,
-          opportunities, or just to connect!
-        </p>
-      </section>
+    <div className="min-h-screen pt-32 pb-20 px-4">
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h1 className="text-4xl md:text-5xl font-bold gradient-text-purple mb-6">
+            Get In Touch
+          </h1>
+          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+            Have a project in mind or want to collaborate? I'd love to hear from
+            you!
+          </p>
+        </div>
 
-      <div className="px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
-            <div>
-              <div className="glass rounded-3xl p-8 md:p-12">
-                <div className="flex items-center mb-8">
-                  <Send className="w-8 h-8 text-purple-400 mr-4" />
-                  <h2 className="text-3xl font-bold gradient-text">
-                    Send Message
-                  </h2>
+        <div className="grid lg:grid-cols-2 gap-12">
+          {/* Contact Information */}
+          <div className="space-y-8">
+            <div className="glass rounded-3xl p-8">
+              <h2 className="text-2xl font-bold gradient-text mb-6">
+                Contact Information
+              </h2>
+
+              <div className="space-y-6">
+                <div className="flex items-center space-x-4">
+                  <div className="bg-purple-500/20 p-3 rounded-full">
+                    <Mail className="w-6 h-6 text-purple-400" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-white">Email</h3>
+                    <p className="text-gray-300">ra.da@live.com</p>
+                  </div>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="flex items-center space-x-4">
+                  <div className="bg-purple-500/20 p-3 rounded-full">
+                    <MapPin className="w-6 h-6 text-purple-400" />
+                  </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
-                      Name *
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-400 focus:border-purple-500 focus:outline-none"
-                      placeholder="Your full name"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
-                      Email *
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-400 focus:border-purple-500 focus:outline-none"
-                      placeholder="your.email@example.com"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
-                      Subject *
-                    </label>
-                    <input
-                      type="text"
-                      name="subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-400 focus:border-purple-500 focus:outline-none"
-                      placeholder="Subject of your message"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
-                      Message *
-                    </label>
-                    <textarea
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      rows={6}
-                      className="w-full px-4 py-3 rounded-lg bg-white/5 border border-white/10 text-white placeholder-gray-400 focus:border-purple-500 focus:outline-none resize-none"
-                      placeholder="Describe your project or question..."
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="w-full btn-primary px-8 py-4 rounded-lg text-white font-medium flex items-center justify-center space-x-2"
-                  >
-                    <Send size={20} />
-                    <span>Send Message</span>
-                  </button>
-                </form>
-              </div>
-            </div>
-
-            {/* Contact Info */}
-            <div className="space-y-8">
-              {/* Contact Details */}
-              <div className="glass rounded-3xl p-8">
-                <h3 className="text-2xl font-bold gradient-text mb-6">
-                  Contact Information
-                </h3>
-
-                <div className="space-y-6">
-                  <div className="flex items-center">
-                    <Mail className="w-6 h-6 text-purple-400 mr-4" />
-                    <div>
-                      <p className="text-gray-400 text-sm">Email</p>
-                      <a
-                        href="mailto:ra.da@live.com"
-                        className="text-white hover:text-purple-400"
-                      >
-                        ra.da@live.com
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center">
-                    <MapPin className="w-6 h-6 text-purple-400 mr-4" />
-                    <div>
-                      <p className="text-gray-400 text-sm">Location</p>
-                      <p className="text-white">Serbia</p>
-                    </div>
+                    <h3 className="font-semibold text-white">Location</h3>
+                    <p className="text-gray-300">Belgrade, Serbia</p>
                   </div>
                 </div>
               </div>
 
               {/* Social Links */}
-              <div className="glass rounded-3xl p-8">
-                <h3 className="text-2xl font-bold gradient-text mb-6">
-                  Social Links
-                </h3>
-
-                <div className="flex space-x-6">
+              <div className="mt-8 pt-8 border-t border-white/10">
+                <h3 className="font-semibold text-white mb-4">Follow Me</h3>
+                <div className="flex space-x-4">
                   <a
                     href="https://github.com/rada-ii"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-white transition-colors transform hover:scale-110"
+                    className="bg-white/10 p-3 rounded-full hover:bg-white/20 transition-colors"
                   >
-                    <Github className="w-6 h-6" />
+                    <Github className="w-5 h-5" />
                   </a>
                   <a
-                    href="https://www.linkedin.com/in/rada-ivankovic"
+                    href="https://www.linkedin.com/in/rada-ivankovi%C4%87-52621b74/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-blue-400 transition-colors transform hover:scale-110"
+                    className="bg-white/10 p-3 rounded-full hover:bg-white/20 transition-colors"
                   >
-                    <Linkedin className="w-6 h-6" />
-                  </a>
-                  <a
-                    href="mailto:ra.da@live.com"
-                    className="text-gray-400 hover:text-red-400 transition-colors transform hover:scale-110"
-                  >
-                    <Mail className="w-6 h-6" />
+                    <Linkedin className="w-5 h-5" />
                   </a>
                 </div>
               </div>
-
-              {/* Quick Contact */}
-              <div className="glass rounded-3xl p-8 text-center">
-                <h3 className="text-xl font-bold text-white mb-4">
-                  Ready to work together?
-                </h3>
-                <p className="text-gray-300 mb-6">
-                  For urgent projects, contact me directly
-                </p>
-                <a
-                  href="mailto:ra.da@live.com"
-                  className="btn-primary px-6 py-3 rounded-full text-white font-medium inline-flex items-center space-x-2"
-                >
-                  <Mail size={18} />
-                  <span>Direct Email</span>
-                </a>
-              </div>
             </div>
+          </div>
+
+          {/* Contact Form */}
+          <div className="glass rounded-3xl p-8">
+            <h2 className="text-2xl font-bold gradient-text mb-6">
+              Send Message
+            </h2>
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label
+                    htmlFor="name"
+                    className="block text-white font-medium mb-2"
+                  >
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    placeholder="Your name"
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="email"
+                    className="block text-white font-medium mb-2"
+                  >
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    placeholder="your.email@example.com"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label
+                  htmlFor="subject"
+                  className="block text-white font-medium mb-2"
+                >
+                  Subject
+                </label>
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  placeholder="What is this about?"
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="message"
+                  className="block text-white font-medium mb-2"
+                >
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  required
+                  rows={6}
+                  className="w-full bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none"
+                  placeholder="Tell me about your project..."
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full btn-primary px-8 py-4 rounded-full font-semibold text-white disabled:opacity-50"
+              >
+                {isSubmitting ? "Sending..." : "Send Message"}
+              </button>
+
+              {submitMessage && (
+                <p
+                  className={`text-center ${
+                    submitMessage.includes("Thank you")
+                      ? "text-green-400"
+                      : "text-red-400"
+                  }`}
+                >
+                  {submitMessage}
+                </p>
+              )}
+            </form>
           </div>
         </div>
       </div>

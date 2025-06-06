@@ -11,7 +11,7 @@ const Footer = () => {
             © 2024 Rada Ivanković. Built with passion and lots of coffee ☕
           </p>
           <a
-            href="https://www.linkedin.com/in/rada-ivankovic"
+            href="https://www.linkedin.com/in/rada-ivankovi%C4%87-52621b74/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-400 hover:text-blue-400 transition-colors transform hover:scale-110 flex items-center space-x-2"
