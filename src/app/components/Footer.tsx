@@ -2,8 +2,8 @@ import { Github, Linkedin, Mail } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className=" fixed bottom-0 left-0 right-0 py-4 mt-4 border-t border-white/10 bg-gray-900/90">
-      <div className="max-w-6xl mx-auto px-6">
+    <footer className="fixed bottom-0 left-0 right-0 py-4 mt-4 border-t border-white/10 bg-gray-900/90">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex justify-between items-center">
           <p className="text-gray-400 text-sm">© 2025 Rada Ivanković</p>
 

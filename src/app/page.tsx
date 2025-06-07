@@ -5,7 +5,7 @@ export default function HomePage() {
     <div className="">
       {/* Hero Section */}
       <section className="pt-16 pb-10 px-4 text-center">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           {/* Avatar/Profile Image */}
           <div className="flex justify-center mb-2">
             <div className="relative">
@@ -20,7 +20,7 @@ export default function HomePage() {
 
       {/* About Me Section */}
       <section className="px-4" id="about">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-6xl mx-auto text-center px-6">
           <h1 className="text-3xl md:text-4xl font-bold gradient-text mb-4">
             Hi, I am Rada!
           </h1>
@@ -40,21 +40,23 @@ export default function HomePage() {
 
       {/* Skills Section */}
       <section className="p-4 md:mb-12 mb-16" id="skills">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-3xl md:text-2xl font-bold gradient-text my-6 text-center">
             Skills & Technologies
           </h2>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:px-32 ">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6  ">
             {skills.map((skill) => (
               <div
                 key={skill.name}
                 className="glass rounded-2xl p-4 hover-lift text-center group"
               >
-                <div className="text-2xl mb-2 group-hover:scale-110 transition-transform">
+                <div className="text-2xl mb-2 group-hover:scale-110 transition-transform duration-200">
                   {skill.icon}
                 </div>
-                <h3 className="text-lg font-bold text-white">{skill.name}</h3>
+                <h3 className="text-lg font-bold group-hover:text-violet-500/35 text-slate-300 transition-colors duration-200">
+                  {skill.name}
+                </h3>
               </div>
             ))}
           </div>

@@ -6,23 +6,25 @@ export default function ProjectsPage() {
     <div className="min-h-screen pt-24 pb-20">
       {/* Header */}
       <section className="px-4 mb-16 text-center">
-        <h1 className="text-3xl md:text-5xl font-bold mb-6 gradient-text-purple">
-          Featured Projects
-        </h1>
-        <p className="text-slate-300 text-lg max-w-2xl mx-auto">
-          A collection of projects that showcase my skills and passion for
-          development
-        </p>
+        <div className="max-w-6xl mx-auto">
+          <h1 className="text-3xl md:text-5xl font-bold mb-6 gradient-text-purple">
+            Featured Projects
+          </h1>
+          <p className="text-slate-300 text-lg max-w-2xl mx-auto">
+            A collection of projects that showcase my skills and passion for
+            development
+          </p>
+        </div>
       </section>
 
       {/* Projects Grid */}
-      <section className="px-4">
-        <div className="max-w-7xl mx-auto">
+      <section className="px-24">
+        <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project) => (
               <div
                 key={project.title}
-                className="bg-gradient-to-br from-slate-800/40 via-slate-700/30 to-purple-900/20 backdrop-blur-lg border border-slate-600/30 rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-200 hover:-translate-y-1 flex flex-col h-full group"
+                className="bg-gradient-to-br from-slate-800/40 via-slate-700/30 to-purple-900/20 backdrop-blur-lg border border-slate-600/30 rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-300 hover:-translate-y-1 flex flex-col h-full group"
               >
                 {/* Project Screenshot */}
                 <div className="relative h-48 bg-gradient-to-br from-purple-600/10 via-blue-600/5 to-slate-800/20 overflow-hidden">
@@ -57,12 +59,12 @@ export default function ProjectsPage() {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex gap-3 mt-auto">
+                  <div className="grid grid-cols-2 gap-3 mt-auto">
                     <a
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-4 py-3 rounded-lg font-medium text-sm transition-all duration-200 hover:shadow-lg hover:shadow-purple-500/25 flex items-center justify-center space-x-2"
+                      className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-4 py-3 rounded-lg font-medium text-sm transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/25 hover:scale-105 flex items-center justify-center space-x-2 transform"
                     >
                       <ExternalLink size={16} />
                       <span>Live Demo</span>
@@ -72,7 +74,7 @@ export default function ProjectsPage() {
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 bg-slate-700/50 hover:bg-slate-600/60 border border-slate-500/30 text-slate-200 hover:text-white px-4 py-3 rounded-lg font-medium text-sm transition-all duration-200 flex items-center justify-center space-x-2"
+                      className="bg-slate-700/50 hover:bg-slate-600/60 border border-slate-500/30 text-slate-200 hover:text-white px-4 py-3 rounded-lg font-medium text-sm transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2 transform"
                     >
                       <Github size={16} />
                       <span>Code</span>
