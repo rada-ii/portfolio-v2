@@ -1,7 +1,7 @@
 // src/app/api/contact/route.ts
 import { NextRequest, NextResponse } from "next/server";
-import clientPromise from "@/lib/mongodb";
-import { ContactMessage } from "@/types/contact";
+// import clientPromise from "@/lib/mongodb";
+// import { ContactMessage } from "@/types/contact";
 
 export async function POST(request: NextRequest) {
   try {
