@@ -2,7 +2,7 @@ import Footer from "./components/Footer";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen">
+    <div className="">
       {/* Hero Section */}
       <section className="pt-16 pb-10 px-4 text-center">
         <div className="max-w-4xl mx-auto">
