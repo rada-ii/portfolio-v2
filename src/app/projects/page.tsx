@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Footer from "../components/Footer";
 import { ExternalLink, Github } from "lucide-react";
 
 export default function ProjectsPage() {
@@ -6,9 +6,13 @@ export default function ProjectsPage() {
     <div className="min-h-screen pt-24 pb-20">
       {/* Header */}
       <section className="px-4 mb-16 text-center">
-        <h1 className="text-4xl md:text-6xl font-bold mb-6 gradient-text-purple">
+        <h1 className="text-3xl md:text-5xl font-bold mb-6 gradient-text-purple">
           Featured Projects
         </h1>
+        <p className="text-slate-300 text-lg max-w-2xl mx-auto">
+          A collection of projects that showcase my skills and passion for
+          development
+        </p>
       </section>
 
       {/* Projects Grid */}
@@ -18,28 +22,34 @@ export default function ProjectsPage() {
             {projects.map((project) => (
               <div
                 key={project.title}
-                className="glass rounded-3xl overflow-hidden hover-lift"
+                className="bg-gradient-to-br from-slate-800/40 via-slate-700/30 to-purple-900/20 backdrop-blur-lg border border-slate-600/30 rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-200 hover:-translate-y-1 flex flex-col h-full group"
               >
-                {/* Project Image/Icon */}
-                <div className="relative h-48 bg-gradient-to-br from-purple-600/20 to-blue-600/20 flex items-center justify-center">
-                  <div className="text-4xl">{project.icon}</div>
+                {/* Project Screenshot */}
+                <div className="relative h-48 bg-gradient-to-br from-purple-600/10 via-blue-600/5 to-slate-800/20 overflow-hidden">
+                  <img
+                    src={project.screenshot}
+                    alt={`${project.title} screenshot`}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent"></div>
                 </div>
 
-                {/* Project Content */}
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-white mb-3">
+                {/* Content */}
+                <div className="p-6 flex-1 flex flex-col">
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors duration-200">
                     {project.title}
                   </h3>
-                  <p className="text-gray-300 mb-4 text-sm leading-relaxed">
+
+                  <p className="text-slate-300 mb-6 text-sm leading-relaxed flex-1">
                     {project.description}
                   </p>
 
-                  {/* Technologies */}
+                  {/* Tech Stack */}
                   <div className="flex flex-wrap gap-2 mb-6">
                     {project.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="bg-purple-500/20 text-purple-300 px-2 py-1 rounded-full text-xs"
+                        className="bg-white/10 backdrop-blur-sm text-slate-200 px-3 py-1.5 rounded-lg text-xs font-medium border border-white/20 hover:bg-purple-500/20 hover:border-purple-400/40 transition-all duration-200"
                       >
                         {tech}
                       </span>
@@ -47,38 +57,26 @@ export default function ProjectsPage() {
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex gap-3">
-                    {project.liveUrl ? (
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 btn-primary px-4 py-2 rounded-lg text-white font-medium flex items-center justify-center space-x-2 text-sm"
-                      >
-                        <span>Live Demo</span>
-                      </a>
-                    ) : (
-                      <span className="flex-1 bg-gray-600/20 text-gray-400 px-4 py-2 rounded-lg font-medium flex items-center justify-center space-x-2 text-sm cursor-not-allowed">
-                        <span>Coming Soon</span>
-                      </span>
-                    )}
+                  <div className="flex gap-3 mt-auto">
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-4 py-3 rounded-lg font-medium text-sm transition-all duration-200 hover:shadow-lg hover:shadow-purple-500/25 flex items-center justify-center space-x-2"
+                    >
+                      <ExternalLink size={16} />
+                      <span>Live Demo</span>
+                    </a>
 
-                    {project.githubUrl ? (
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 btn-secondary px-4 py-2 rounded-lg text-white font-medium flex items-center justify-center space-x-2 text-sm"
-                      >
-                        <Github size={16} />
-                        <span>Source Code</span>
-                      </a>
-                    ) : (
-                      <span className="flex-1 bg-gray-600/20 text-gray-400 px-4 py-2 rounded-lg font-medium flex items-center justify-center space-x-2 text-sm cursor-not-allowed">
-                        <Github size={16} />
-                        <span>Private</span>
-                      </span>
-                    )}
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 bg-slate-700/50 hover:bg-slate-600/60 border border-slate-500/30 text-slate-200 hover:text-white px-4 py-3 rounded-lg font-medium text-sm transition-all duration-200 flex items-center justify-center space-x-2"
+                    >
+                      <Github size={16} />
+                      <span>Code</span>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -86,94 +84,64 @@ export default function ProjectsPage() {
           </div>
         </div>
       </section>
-
-      {/* CTA Section */}
-      <section className="px-4 mt-20">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="glass rounded-3xl p-8 md:p-12">
-            <h2 className="text-3xl md:text-4xl font-bold gradient-text mb-6">
-              Let&rsquo;s Work Together
-            </h2>
-            <p className="text-gray-300 text-lg mb-8">
-              I'm always excited to take on new challenges and collaborate on
-              interesting projects. we can bring your ideas to life.
-            </p>
-            <Link
-              href="/contact"
-              className="btn-primary px-8 py-4 rounded-full text-white font-medium inline-flex items-center space-x-2"
-            >
-              <span>Get In Touch</span>
-              <ExternalLink size={20} />
-            </Link>
-          </div>
-        </div>
-      </section>
+      <Footer />
     </div>
   );
 }
 
 const projects = [
-  // Real Projects
   {
     title: "Event Manager",
     description:
       "Full-stack event management platform with user authentication, image uploads, and real-time CRUD operations. Built with modern tech stack and deployed on Vercel.",
-    technologies: [
-      "React",
-      "Node.js",
-      "PostgreSQL",
-      "TypeScript",
-      "Cloudinary",
-    ],
-    icon: "🎯",
+    technologies: ["Next.JS", "PostgreSQL", "TS", "Cloudinary"],
+    screenshot: "/screenshots/event-menager.png",
     liveUrl: "https://event-manager-frontend-ruby.vercel.app",
     githubUrl: "https://github.com/rada-ii/event-manager",
   },
   {
-    title: "Quote App",
+    title: "Email Signature Generator",
     description:
-      "Modern quote application with save/delete functionality built with Next.js and TypeScript. Features clean UI design and responsive layout.",
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "API"],
-    icon: "💬",
-    liveUrl: null, // Coming soon
-    githubUrl: null, // Private or coming soon
+      "Email Signature Generator is a modern web application built with Vue 3, Vite, and Tailwind CSS that allows users to create clean, customizable email signatures using a simple form and live preview.",
+    technologies: ["Vue 3", "Vite", "Tailwind CSS"],
+    screenshot: "/screenshots/email-signature.png",
+    liveUrl: "https://email-signature-generator-steel.vercel.app/",
+    githubUrl: "https://github.com/rada-ii/Email-signature-generator",
   },
   {
     title: "Pokemon App",
     description:
       "Interactive Pokemon search application with favorites functionality and detailed character information. Integrates with Pokemon API for real-time data.",
     technologies: ["React", "Bootstrap", "REST API", "JavaScript"],
-    icon: "🐾",
+    screenshot: "/screenshots/pokemon.png",
     liveUrl: "https://pokemon-react-app-gamma.vercel.app/",
     githubUrl: "https://github.com/rada-ii/Pokemon-react-app",
   },
-
-  // Placeholder Projects
   {
-    title: "Movie Quotes",
+    title: "Rick and Morty App",
     description:
-      "Full-stack application for browsing and managing movie quotes with user authentication and data persistence using Supabase backend.",
-    technologies: ["React", "Supabase", "CSS", "JavaScript"],
-    icon: "🎬",
-    liveUrl: null,
-    githubUrl: null,
+      "Interactive character explorer for Rick and Morty TV series with dynamic API data fetching, pagination, and dark/light theme toggle functionality.",
+    technologies: ["HTML", "CSS", "Bootstrap", "JavaScript"],
+    screenshot: "/screenshots/rick&morty.png",
+    liveUrl: "https://rada-ii.github.io/Rick_and_Morty/",
+    githubUrl: "https://github.com/rada-ii/Rick_and_Morty",
+  },
+  {
+    title: "Weather App",
+    description:
+      "Weather application built with React and Vite that provides real-time weather information with a clean, intuitive interface.",
+    technologies: ["React", "CSS", "Weather API"],
+    screenshot: "/screenshots/weather.png",
+    liveUrl: "https://weather-react-practice.vercel.app/",
+    githubUrl: "https://github.com/rada-ii/Weather-react",
   },
   {
     title: "Bit-Show",
     description:
       "TV show search application that allows users to discover and explore detailed information about their favorite shows using external TV show API.",
     technologies: ["React", "CSS", "API", "JavaScript"],
-    icon: "📺",
-    liveUrl: null,
-    githubUrl: null,
-  },
-  {
-    title: "Books Tracker",
-    description:
-      "Simple yet effective book tracking application that allows users to add and manage their reading list with a clean and intuitive interface.",
-    technologies: ["React", "CSS", "Local Storage", "JavaScript"],
-    icon: "📚",
-    liveUrl: null,
-    githubUrl: null,
+    screenshot: "/screenshots/tv-show.png",
+    liveUrl: "https://bit-show-react.vercel.app",
+    githubUrl: "https://github.com/rada-ii/bit-show-react",
   },
 ];
