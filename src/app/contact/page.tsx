@@ -75,7 +75,7 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen pt-32 pb-20">
-      <div className="max-w-6xl mx-auto  px-6">
+      <div className="max-w-6xl mx-auto md:px-6 px-4">
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold gradient-text-purple mb-6">

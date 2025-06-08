@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: "Rada Ivanković - Software Developer",
   description:
     "Portfolio of Rada Ivanković - Full-Stack Developer specialized in React, Next.js, Node.js, TypeScript",
+  icons: {
+    icon: "/icon.ico",
+  },
 };
 
 export default function RootLayout({

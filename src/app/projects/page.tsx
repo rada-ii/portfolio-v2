@@ -19,7 +19,7 @@ export default function ProjectsPage() {
 
       {/* Projects Grid */}
       <section className="md:px-24 px-0">
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto md:px-6 px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project) => (
               <div
