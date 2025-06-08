@@ -1,6 +1,6 @@
 # 💼 Portfolio Website
 
-Modern personal portfolio built with Next.js, featuring glassmorphism design and contact form with MongoDB integration.
+A modern, full-stack portfolio website built with Next.js, featuring a glassmorphism design, MongoDB integration, and an admin panel for managing contact messages.
 
 ## 🌐 Live Demo
 
