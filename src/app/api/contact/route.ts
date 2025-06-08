@@ -65,7 +65,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// GET endpoint za pregled poruka
+// GET endpoint
 export async function GET(request: NextRequest) {
   try {
     const client = await clientPromise;

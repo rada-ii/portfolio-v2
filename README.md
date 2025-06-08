@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 💼 Portfolio Website
 
-## Getting Started
+Modern personal portfolio built with Next.js, featuring glassmorphism design and contact form with MongoDB integration.
 
-First, run the development server:
+## 🌐 Live Demo
+
+[https://portfolio-v2-topaz-pi.vercel.app/](https://portfolio-v2-topaz-pi.vercel.app/)
+
+## ✨ Features
+
+- **Glassmorphism Design**: Dark theme with glass-like effects and smooth animations
+- **Responsive Layout**: Works perfectly on mobile, tablet, and desktop
+- **Contact Form**: Functional form connected to MongoDB
+- **Admin Panel**: Password-protected interface to manage messages
+- **CV Download**: Downloadable resume functionality
+
+## 🛠️ Tech Stack
+
+**Frontend:** Next.js 15, React 19, TypeScript, Tailwind CSS  
+**Backend:** MongoDB Atlas, Next.js API routes  
+**Deployment:** Vercel
+
+## 🚀 Quick Start
+
+```bash
+git clone https://github.com/rada-ii/portfolio-v2.git
+cd portfolio-v2
+npm install
+```
+
+Create `.env.local`:
+
+```env
+MONGODB_URI=your_mongodb_connection_string
+ADMIN_PASSWORD=your_admin_password
+```
+
+Run development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📁 Project Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/
+├── app/
+│   ├── components/     # Navbar, Footer
+│   ├── contact/        # Contact page
+│   ├── projects/       # Projects showcase
+│   ├── admin/          # Admin panel
+│   └── api/           # Contact form & CV download
+├── lib/mongodb.ts     # Database connection
+└── types/             # TypeScript definitions
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🎨 Design Features
 
-## Learn More
+- Dark glassmorphism theme with gradient backgrounds
+- Floating animated shapes and smooth hover effects
+- Mobile-first responsive design
+- Professional typography and spacing
 
-To learn more about Next.js, take a look at the following resources:
+## 📬 Contact
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Author:** Rada Ivanković  
+**GitHub:** [@rada-ii](https://github.com/rada-ii)  
+**Email:** ra.da@live.com
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+⭐ **Star this repo if you found it helpful!**
