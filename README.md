@@ -6,22 +6,13 @@ This is a full-stack portfolio website built with Next.js, featuring a glassmorp
 
 [https://portfolio-v2-topaz-pi.vercel.app/](https://portfolio-v2-topaz-pi.vercel.app/)
 
-## 🖼️ Screenshots
 
-### Homepage
+## 📸 Screenshots
 
-![Homepage](./public/screenshots/homepage.png)
-_Hero section with glassmorphism design and animated background shapes_
-
-### Projects Page
-
-![Projects](./public/screenshots/projects.png)
-_Showcase of all projects with hover effects and live demo links_
-
-### Contact Page
-
-![Contact](./public/screenshots/contact.png)
-_Functional contact form with MongoDB integration_
+| Homepage | Projects | Contact |
+|----------|----------|---------|
+| ![Homepage](/public/screenshots/homepage.png) | ![Projects](/public/screenshots/projects.png) | ![Contact](/public/screenshots/contact.png) |
+| *Hero section with glassmorphism design and animated background shapes* | *Showcase of all projects with hover effects and live demo links* | *Functional contact form with MongoDB integration* |
 
 ## ✨ Features
 
