@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import clientPromise from "@/lib/mongodb";
-import { ContactMessage } from "../contact//route";
+import { ContactMessage } from "@/types/contact";
 
 export async function POST(request: NextRequest) {
   try {
