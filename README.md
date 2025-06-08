@@ -10,17 +10,17 @@ A modern, full-stack portfolio website built with Next.js, featuring a glassmorp
 
 ### Homepage
 
-![Homepage](./screenshots/homepage.png)
+![Homepage](./public/screenshots/homepage.png)
 _Hero section with glassmorphism design and animated background shapes_
 
 ### Projects Page
 
-![Projects](./screenshots/projects.png)
+![Projects](./public/screenshots/projects.png)
 _Showcase of all projects with hover effects and live demo links_
 
 ### Contact Page
 
-![Contact](./screenshots/contact.png)
+![Contact](./public/screenshots/contact.png)
 _Functional contact form with MongoDB integration_
 
 ## ✨ Features
