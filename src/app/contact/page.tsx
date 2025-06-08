@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Mail, MapPin, Github, Linkedin } from "lucide-react";
 import Footer from "../components/Footer";
 
@@ -13,6 +13,7 @@ export default function ContactPage() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState("");
+  const [messageType, setMessageType] = useState<"success" | "error" | "">("");
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -24,9 +25,22 @@ export default function ContactPage() {
     }));
   };
 
+  // Auto-hide message after 5 seconds
+  useEffect(() => {
+    if (submitMessage) {
+      const timer = setTimeout(() => {
+        setSubmitMessage("");
+        setMessageType("");
+      }, 5000); // 5 sekundi
+
+      return () => clearTimeout(timer);
+    }
+  }, [submitMessage]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitMessage("");
 
     try {
       const response = await fetch("/api/contact", {
@@ -37,14 +51,23 @@ export default function ContactPage() {
         body: JSON.stringify(formData),
       });
 
+      const data = await response.json();
+
       if (response.ok) {
-        setSubmitMessage("Thank you! Your message has been sent successfully.");
+        setSubmitMessage(
+          "Thank you! Your message has been sent successfully. ✅"
+        );
+        setMessageType("success");
         setFormData({ name: "", email: "", subject: "", message: "" });
       } else {
-        setSubmitMessage("Something went wrong. Please try again.");
+        setSubmitMessage(
+          data.error || "Something went wrong. Please try again."
+        );
+        setMessageType("error");
       }
     } catch (error) {
       setSubmitMessage("Something went wrong. Please try again.");
+      setMessageType("error");
     } finally {
       setIsSubmitting(false);
     }
@@ -206,21 +229,25 @@ export default function ContactPage() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full btn-primary px-8 py-4 rounded-full font-semibold text-white disabled:opacity-50"
+                className="w-full btn-primary px-8 py-4 rounded-full font-semibold text-white disabled:opacity-50 transition-all duration-300"
               >
                 {isSubmitting ? "Sending..." : "Send Message"}
               </button>
 
+              {/* Success/Error Message with auto-hide */}
               {submitMessage && (
-                <p
-                  className={`text-center ${
-                    submitMessage.includes("Thank you")
-                      ? "text-green-400"
-                      : "text-red-400"
+                <div
+                  className={`p-4 rounded-lg text-center font-medium transition-all duration-500 ease-in-out ${
+                    messageType === "success"
+                      ? "bg-green-500/20 text-green-400 border border-green-500/30"
+                      : "bg-red-500/20 text-red-400 border border-red-500/30"
                   }`}
                 >
                   {submitMessage}
-                </p>
+                  <div className="text-xs text-gray-400 mt-1">
+                    This message will disappear in a few seconds
+                  </div>
+                </div>
               )}
             </form>
           </div>

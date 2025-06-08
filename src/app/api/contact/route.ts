@@ -1,7 +1,6 @@
-// src/app/api/contact/route.ts
 import { NextRequest, NextResponse } from "next/server";
-// import clientPromise from "@/lib/mongodb";
-// import { ContactMessage } from "@/types/contact";
+import clientPromise from "@/lib/mongodb";
+import { ContactMessage } from "../contact//route";
 
 export async function POST(request: NextRequest) {
   try {
@@ -26,64 +25,65 @@ export async function POST(request: NextRequest) {
     }
 
     // Connect to MongoDB
-    // const client = await clientPromise;
-    // const db = client.db("portfolio"); // Ime baze
-    // const collection = db.collection<ContactMessage>("messages");
+    const client = await clientPromise;
+    const db = client.db("portfolio");
+    const collection = db.collection<ContactMessage>("messages");
 
     // Create message object
-    // const contactMessage: Omit<ContactMessage, "_id"> = {
-    //   name: name.trim(),
-    //   email: email.trim().toLowerCase(),
-    //   subject: subject.trim(),
-    //   message: message.trim(),
-    //   timestamp: new Date(),
-    //   read: false,
-    // };
+    const contactMessage: Omit<ContactMessage, "_id"> = {
+      name: name.trim(),
+      email: email.trim().toLowerCase(),
+      subject: subject.trim(),
+      message: message.trim(),
+      timestamp: new Date(),
+      read: false,
+    };
 
     // Insert message into database
-    // const result = await collection.insertOne(contactMessage);
+    const result = await collection.insertOne(contactMessage);
 
-    // console.log("Message saved to database:", {
-    //   id: result.insertedId,
-    //   from: email,
-    //   subject: subject,
-    //   timestamp: new Date().toISOString(),
-    // });
-    console.log("Contact form submission:", { name, email, subject });
+    console.log("✅ REAL MESSAGE SAVED:", {
+      id: result.insertedId,
+      from: email,
+      subject: subject,
+      timestamp: new Date().toISOString(),
+    });
 
     return NextResponse.json(
-      { message: "Message received! MongoDB setup in progress." },
+      {
+        message: "Message sent successfully! I'll get back to you soon.",
+        messageId: result.insertedId,
+      },
       { status: 200 }
     );
   } catch (error) {
-    console.error("Contact form error:", error);
+    console.error("❌ Contact form error:", error);
+    return NextResponse.json(
+      { error: "Failed to send message. Please try again." },
+      { status: 500 }
+    );
+  }
+}
+
+// GET endpoint za pregled poruka
+export async function GET(request: NextRequest) {
+  try {
+    const client = await clientPromise;
+    const db = client.db("portfolio");
+    const collection = db.collection<ContactMessage>("messages");
+
+    const messages = await collection
+      .find({})
+      .sort({ timestamp: -1 })
+      .limit(50)
+      .toArray();
+
+    return NextResponse.json({ messages }, { status: 200 });
+  } catch (error) {
+    console.error("Error fetching messages:", error);
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 }
     );
   }
 }
-
-// GET endpoint da možeš da vidiš poruke (optional)
-// export async function GET(request: NextRequest) {
-//   try {
-//     const client = await clientPromise;
-//     const db = client.db("portfolio");
-//     const collection = db.collection<ContactMessage>("messages");
-
-//     // Get all messages, newest first
-//     const messages = await collection
-//       .find({})
-//       .sort({ timestamp: -1 })
-//       .limit(50) // Limit na 50 najnovijih
-//       .toArray();
-
-//     return NextResponse.json({ messages }, { status: 200 });
-//   } catch (error) {
-//     console.error("Error fetching messages:", error);
-//     return NextResponse.json(
-//       { error: "Internal server error" },
-//       { status: 500 }
-//     );
-//   }
-// }

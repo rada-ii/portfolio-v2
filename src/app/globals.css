@@ -70,7 +70,7 @@ body {
 .floating-shape:nth-child(1) {
   width: 300px;
   height: 300px;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #8a98d5, #764ba2);
   top: 5%;
   left: 10%;
   animation-delay: 0s;
@@ -79,7 +79,7 @@ body {
 .floating-shape:nth-child(2) {
   width: 200px;
   height: 200px;
-  background: linear-gradient(135deg, #f093fb, #f5576c);
+  background: linear-gradient(135deg, #e26ab6, #9111ec);
   top: 60%;
   right: 8%;
   animation-delay: 2s;
@@ -88,7 +88,7 @@ body {
 .floating-shape:nth-child(3) {
   width: 180px;
   height: 180px;
-  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  background: linear-gradient(135deg, #1a7fd7, #13e3ed);
   bottom: 5%;
   left: 15%;
   animation-delay: 4s;
@@ -97,7 +97,7 @@ body {
 .floating-shape:nth-child(4) {
   width: 120px;
   height: 120px;
-  background: linear-gradient(135deg, #ffecd2, #fcb69f);
+  background: linear-gradient(135deg, #e9ee85, #f3a658);
   top: 25%;
   right: 15%;
   animation-delay: 1s;
@@ -106,10 +106,10 @@ body {
 .floating-shape:nth-child(5) {
   width: 150px;
   height: 150px;
-  background: linear-gradient(135deg, #a8edea, #fed6e3);
+  background: linear-gradient(135deg, #70de8d, #464d42);
   bottom: 45%;
   right: 9%;
-  animation-delay: 6s;
+  animation-delay: 3s;
 }
 
 /* Animations */
