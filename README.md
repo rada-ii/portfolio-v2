@@ -4,8 +4,11 @@ This is a full-stack portfolio website built with Next.js, featuring a glassmorp
 
 ## 🌐 Live Demo
 
-[https://portfolio-v2-topaz-pi.vercel.app/](https://portfolio-v2-topaz-pi.vercel.app/)
+<a href="https://portfolio-v2-topaz-pi.vercel.app/" target="_blank" rel="noopener noreferrer">
+    👉 View Live Application
+</a>
 
+---
 
 ## 📸 Screenshots
 
