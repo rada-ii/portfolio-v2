@@ -4,7 +4,7 @@ This is a full-stack portfolio website built with Next.js, featuring a glassmorp
 
 ## 🌐 Live Demo
 
-<a href="https://portfolio-v2-topaz-pi.vercel.app/" target="_blank" rel="noopener noreferrer">
+<a href="https://rada-it.vercel.app/" target="_blank" rel="noopener noreferrer">
     👉 View Live Application
 </a>
 
